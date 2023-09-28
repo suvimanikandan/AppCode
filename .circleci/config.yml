@@ -12,7 +12,7 @@ jobs:
           command: |
             version="build-$CIRCLE_BUILD_NUM"
             echo $version
-            docker build -t piyushsachdeva/todo-app:$version .
+            docker build -t suvi22/todo-app:$version .
             echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
             docker push suvi22/todo-app:$version
 
@@ -27,7 +27,7 @@ jobs:
           command: |
             TAG=$CIRCLE_BUILD_NUM
             ((TAG--))
-            git clone https://github.com/piyushsachdeva/kube_manifest.git
+            git clone https://github.com/suvimanikandan/kube_manifest.git
             git config --global user.email "skmswedha@gmail.com"
             git config --global user.name "suvimanikandan"
             pwd
@@ -41,7 +41,7 @@ jobs:
             git config credential.helper 'cache --timeout=120'
             git push -q https://$GITHUB_PERSONAL_TOKEN@github.com/suvimanikandan/kube_manifest.git main 
 workflows:
-  GitOpsflow:
+  GitOpsflow
     jobs:
       - build_and_push
       - Update_manifest:
